@@ -720,19 +720,19 @@ export default class Carousel extends Component {
     }
 
     _repositionScroll (index) {
-        const { data, loopClonesPerSide } = this.props;
+        const { data } = this.props;
         const dataLength = data && data.length;
 
         if (!this._enableLoop() || !dataLength ||
-            (index >= loopClonesPerSide && index < dataLength + loopClonesPerSide)) {
+            (index >= 0 && index < dataLength + 0)) {
             return;
         }
 
         let repositionTo = index;
 
-        if (index >= dataLength + loopClonesPerSide) {
+        if (index >= dataLength + 0) {
             repositionTo = index - dataLength;
-        } else if (index < loopClonesPerSide) {
+        } else if (index < 0) {
             repositionTo = index + dataLength;
         }
 
@@ -1245,7 +1245,6 @@ export default class Carousel extends Component {
             enableMomentum,
             itemWidth,
             itemHeight,
-            loopClonesPerSide,
             sliderWidth,
             sliderHeight,
             vertical
@@ -1254,7 +1253,7 @@ export default class Carousel extends Component {
         const visibleItems = Math.ceil(vertical ?
             sliderHeight / itemHeight :
             sliderWidth / itemWidth) + 1;
-        const initialNumPerSide = this._enableLoop() ? loopClonesPerSide : 2;
+        const initialNumPerSide = this._enableLoop() ? 0 : 2;
         const initialNumToRender = visibleItems + (initialNumPerSide * 2);
         const maxToRenderPerBatch = 1 + (initialNumToRender * 2);
         const windowSize = maxToRenderPerBatch;
