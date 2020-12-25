@@ -470,14 +470,13 @@ export default class Carousel extends Component {
     }
 
     _getFirstItem (index, props = this.props) {
-        const { loopClonesPerSide } = props;
         const itemsLength = this._getCustomDataLength(props);
 
         if (!itemsLength || index > itemsLength - 1 || index < 0) {
             return 0;
         }
 
-        return this._enableLoop() ? index + loopClonesPerSide : index;
+        return this._enableLoop() ? 0 : index;
     }
 
     _getWrappedRef () {
